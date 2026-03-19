@@ -409,7 +409,6 @@
             const m = data[id][modelKey] || {};
             return {
                 sisnri: (m.sisnri || 0).toFixed(2),
-                pesq: (m.pesq || 0).toFixed(2),
                 dnsmos: (m.dnsmos || 0).toFixed(2),
                 nisqas: (m.nisqas || 0).toFixed(2)
             };
@@ -430,7 +429,7 @@
             </div>
           </div>
 
-          <div class="columns is-vcentered" style="padding: 2rem 2.5rem; margin: 0;">
+          <div class="columns is-vcentered" style="padding: 2rem 2.5rem 1rem 2.5rem; margin: 0;">
             <div class="column is-4" style="padding-right: 3rem;">
               <div class="input-video-container">
                 <video controls loop preload="metadata">
@@ -456,34 +455,27 @@
                   </div>
                 </div>
                 <div class="column is-6">
-                  <div class="p-3">
-                    <p class="method-label" style="color: #888;">Full-tune</p>
-                    <audio controls><source src="${basePaths.full}${id}.wav" type="audio/wav"></audio>
-                  </div>
+                  <div class="p-3"><p class="method-label" style="color: #888;">Full-tune</p><audio controls><source src="${basePaths.full}${id}.wav" type="audio/wav"></audio></div>
                 </div>
                 <div class="column is-6">
-                  <div class="p-3">
-                    <p class="method-label" style="color: #888;">Residual</p>
-                    <audio controls><source src="${basePaths.res}${id}.wav" type="audio/wav"></audio>
-                  </div>
+                  <div class="p-3"><p class="method-label" style="color: #888;">Residual</p><audio controls><source src="${basePaths.res}${id}.wav" type="audio/wav"></audio></div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="metrics-section">
-            <button class="button is-small is-rounded is-dark" onclick="this.nextElementSibling.classList.toggle('is-hidden')" style="font-size: 0.65rem; font-weight: 700;">
-              <span class="icon is-small"><i class="fas fa-table"></i></span>
-              <span>COMPARE ALL METRICS</span>
-            </button>
-            
-            <div class="metrics-table-container is-hidden mt-3">
-              <table class="table is-fullwidth is-narrow is-hoverable" style="font-size: 0.8rem;">
+          <div class="metrics-section" style="padding: 0 2.5rem 2rem 2.5rem;">
+            <div class="metrics-table-container">
+              <table class="table is-fullwidth is-narrow is-hoverable" style="font-size: 0.8rem; border: 1px solid #eee;">
                 <thead>
+                  <tr>
+                    <th class="metric-category-header">Metric Type</th>
+                    <th class="metric-category-header has-text-centered" style="background-color: #fff4e5 !important;">Intrusive</th>
+                    <th class="metric-category-header has-text-centered" colspan="2" style="background-color: #e3f2fd !important;">Non-Intrusive</th>
+                  </tr>
                   <tr style="background: #f9f9f9;">
-                    <th>Model</th>
+                    <th style="width: 30%;">Model</th>
                     <th class="has-text-centered">SI-SNRi ↑</th>
-                    <th class="has-text-centered">PESQ ↑</th>
                     <th class="has-text-centered">DNSMOS ↑</th>
                     <th class="has-text-centered">NISQA ↑</th>
                   </tr>
@@ -492,28 +484,24 @@
                   <tr style="background: #fffdf5; font-weight: 700; color: #8c6d1f;">
                     <td>LSM (Ours)</td>
                     <td class="has-text-centered">${ours.sisnri}</td>
-                    <td class="has-text-centered">${ours.pesq}</td>
                     <td class="has-text-centered">${ours.dnsmos}</td>
                     <td class="has-text-centered">${ours.nisqas}</td>
                   </tr>
                   <tr>
                     <td>AV-MossFormer2</td>
                     <td class="has-text-centered">${clearer.sisnri}</td>
-                    <td class="has-text-centered">${clearer.pesq}</td>
                     <td class="has-text-centered">${clearer.dnsmos}</td>
                     <td class="has-text-centered">${clearer.nisqas}</td>
                   </tr>
                   <tr style="color: #888;">
                     <td>Full-tune</td>
                     <td class="has-text-centered">${fulltune.sisnri}</td>
-                    <td class="has-text-centered">${fulltune.pesq}</td>
                     <td class="has-text-centered">${fulltune.dnsmos}</td>
                     <td class="has-text-centered">${fulltune.nisqas}</td>
                   </tr>
                   <tr style="color: #888;">
                     <td>Residual</td>
                     <td class="has-text-centered">${res.sisnri}</td>
-                    <td class="has-text-centered">${res.pesq}</td>
                     <td class="has-text-centered">${res.dnsmos}</td>
                     <td class="has-text-centered">${res.nisqas}</td>
                   </tr>

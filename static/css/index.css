@@ -974,3 +974,21 @@ audio {
 .column.is-3.pr-5 {
   padding-right: 3rem !important; /* Increased spacing */
 }
+
+/* Styling for the new Metric Category header row */
+.metric-category-header {
+    background-color: #f1f5f9 !important;
+    font-size: 0.65rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.05em;
+    color: #475569 !important;
+    text-transform: uppercase;
+    border-bottom: 1px solid #e2e8f0 !important;
+}
+
+/* Ensure the table doesn't have an extra top border */
+.metrics-table-container table {
+    border-top: 1px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
+}
