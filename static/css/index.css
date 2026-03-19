@@ -1062,3 +1062,19 @@ audio {
   -webkit-text-fill-color: transparent;
   display: inline-block;
 }
+
+.publication-title {
+    display: inline-block !important; /* Shrinks the container to fit the text exactly */
+    text-align: center !important;    /* Centers the lines of text within that container */
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.2 !important;
+}
+
+/* Responsive fix: If the title wraps, keep the icon inline */
+@media screen and (max-width: 768px) {
+    .publication-title img {
+        height: 1.2em; /* Slightly larger on mobile for visibility */
+        margin-bottom: 10px;
+    }
+}
