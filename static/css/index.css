@@ -851,31 +851,37 @@ audio { height: 30px; width: 100%; }
 }
 
 .gt-section {
-  display: flex;
+  display: flex !important;
   align-items: center;
   gap: 15px;
-  background: rgba(255,255,255,0.1);
-  padding: 8px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 5px 20px;
   border-radius: 50px;
+  flex: 1 1 auto; /* Allows it to grow and provides a base size */
+  min-width: 200px; /* Prevents collapsing */
+  max-width: 600px;
+  margin-left: 2rem;
 }
 
+/* 2. Fix the Square Video Player */
 .input-video-container {
   background: #000;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  /* Force Square Aspect Ratio */
-  width: 100%;
-  aspect-ratio: 1 / 1; 
-  display: flex;
+  
+  /* Robust Square Force */
+  width: 100% !important;
+  aspect-ratio: 1 / 1 !important; 
+  display: flex !important;
   align-items: center;
   justify-content: center;
 }
 
 .input-video-container video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Ensures the 224x224 video fills the square perfectly */
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important; /* Forces the 224x224 to fill the square */
 }
 
 .method-label {
@@ -952,23 +958,14 @@ audio {
 
 /* Slimmer Header */
 .card-header {
-  padding: 0.75rem 2rem !important; /* Reduced vertical padding */
+  padding: 0.6rem 2.5rem !important;
+  min-height: 60px;
 }
 
-/* Ground Truth Section layout */
-.gt-section {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 5px 15px;
-  border-radius: 50px;
-  flex: 1; /* Allow this section to grow */
-  max-width: 600px; /* Prevents it from getting TOO wide on huge screens */
-  margin-left: 2rem;
-}
-
+/* Ensure the audio tag inside GT section has a visible width */
 .gt-section audio {
-  flex: 1; /* Forces the audio player to take up all available space in the bubble */
-  height: 28px; /* Slightly slimmer player for the slim header */
+  display: block !important;
+  width: 100% !important;
+  min-width: 150px; 
+  height: 28px;
 }

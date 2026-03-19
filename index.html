@@ -437,7 +437,9 @@
         <div class="columns is-gapless" style="padding: 2rem 2.5rem 1rem 2.5rem;">
           <div class="column is-3 pr-5">
             <div class="input-video-container">
-              <video controls preload="metadata"><source src="${basePaths.video}${id}.mp4" type="video/mp4"></video>
+              <video controls loop preload="metadata" style="width: 100%; height: 100%; object-fit: cover;">
+                <source src="${basePaths.video}${id}.mp4" type="video/mp4">
+              </video>
             </div>
             <p class="has-text-centered mt-3" style="font-weight: 700; color: #999; font-size: 0.75rem; text-transform: uppercase;">Input Video</p>
           </div>
