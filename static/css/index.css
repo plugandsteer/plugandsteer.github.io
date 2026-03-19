@@ -853,24 +853,20 @@ audio { height: 30px; width: 100%; }
 .gt-section {
   display: flex !important;
   align-items: center;
-  gap: 15px;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 5px 20px;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 4px 15px;
   border-radius: 50px;
-  flex: 1 1 auto; /* Allows it to grow and provides a base size */
-  min-width: 200px; /* Prevents collapsing */
-  max-width: 600px;
-  margin-left: 2rem;
+  /* CHANGED: Removed flex:1 so it matches the width of other players */
+  width: fit-content; 
+  margin-left: auto; /* Pushes it to the right but keeps it compact */
 }
 
-/* 2. Fix the Square Video Player */
 .input-video-container {
   background: #000;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  
-  /* Robust Square Force */
   width: 100% !important;
   aspect-ratio: 1 / 1 !important; 
   display: flex !important;
@@ -881,7 +877,9 @@ audio { height: 30px; width: 100%; }
 .input-video-container video {
   width: 100% !important;
   height: 100% !important;
-  object-fit: cover !important; /* Forces the 224x224 to fill the square */
+  /* CHANGED: 'contain' ensures the whole 224x224 frame is visible without cropping */
+  object-fit: contain !important; 
+  background: #000;
 }
 
 .method-label {
@@ -964,8 +962,10 @@ audio {
 
 /* Ensure the audio tag inside GT section has a visible width */
 .gt-section audio {
-  display: block !important;
-  width: 100% !important;
-  min-width: 150px; 
+  width: 260px !important; /* Fixed width to match the model players below */
   height: 28px;
+}
+
+.column.is-3.pr-5 {
+  padding-right: 3rem !important; /* Increased spacing */
 }

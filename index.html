@@ -423,28 +423,27 @@
 
       const html = `
       <div class="sample-card">
-        <div class="card-header" style="display: flex; align-items: center;">
-          <div style="flex-shrink: 0;">
-            <span class="is-size-5" style="font-weight: 700; white-space: nowrap;">Sample ${index + 1}</span>
-          </div>
+        <div class="card-header" style="display: flex; align-items: center; justify-content: space-between;">
+          <span class="is-size-5" style="font-weight: 700;">Sample ${index + 1}</span>
           
           <div class="gt-section">
-            <span style="font-size: 0.75rem; font-weight: 700; color: #cbd5e0; text-transform: uppercase; white-space: nowrap;">Ground Truth</span>
+            <span style="font-size: 0.7rem; font-weight: 700; color: #cbd5e0; text-transform: uppercase;">Ground Truth</span>
             <audio controls><source src="${basePaths.gt}${id}.wav" type="audio/wav"></audio>
           </div>
         </div>
 
-        <div class="columns is-gapless" style="padding: 2rem 2.5rem 1rem 2.5rem;">
-          <div class="column is-3 pr-5">
+        <div class="columns is-vcentered" style="padding: 2.5rem; margin: 0;">
+          
+          <div class="column is-4" style="padding-right: 2rem;">
             <div class="input-video-container">
-              <video controls loop preload="metadata" style="width: 100%; height: 100%; object-fit: cover;">
+              <video controls loop preload="metadata">
                 <source src="${basePaths.video}${id}.mp4" type="video/mp4">
               </video>
             </div>
-            <p class="has-text-centered mt-3" style="font-weight: 700; color: #999; font-size: 0.75rem; text-transform: uppercase;">Input Video</p>
+            <p class="has-text-centered mt-3" style="font-weight: 700; color: #999; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px;">Input Video</p>
           </div>
 
-          <div class="column is-9 pl-5">
+          <div class="column is-8">
             <div class="columns is-multiline">
               <div class="column is-6">
                 <div class="p-3 ours-highlight" style="border-radius: 12px;">
@@ -459,15 +458,12 @@
                   <audio controls><source src="${basePaths.clearer}${id}.wav" type="audio/wav"></audio>
                 </div>
               </div>
-              <div class="column is-6">
-                <div class="p-3"><p class="method-label" style="color: #888;">Full-tune</p><audio controls><source src="${basePaths.full}${id}.wav" type="audio/wav"></audio></div>
               </div>
-              <div class="column is-6">
-                <div class="p-3"><p class="method-label" style="color: #888;">Residual</p><audio controls><source src="${basePaths.res}${id}.wav" type="audio/wav"></audio></div>
-              </div>
-            </div>
           </div>
         </div>
+        
+        </div>
+      
 
         <div style="padding: 0 2.5rem 2rem 2.5rem;">
           <button class="button is-small is-rounded is-dark" onclick="this.nextElementSibling.classList.toggle('is-hidden')" style="font-size: 0.7rem; font-weight: 700; letter-spacing: 0.5px;">
