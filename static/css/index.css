@@ -221,6 +221,7 @@ body {
 .author-block {
   display: inline-block;
   margin-right: 0.5rem;
+  color: var(--text-light);
 }
 
 .publication-banner img {
@@ -1084,29 +1085,32 @@ audio {
     font-weight: 800 !important;
     letter-spacing: -1px;
     line-height: 1.2 !important;
-    margin-top: 2rem !important;
-    margin-bottom: 3rem !important;
     
-    /* Centering Logic */
-    display: inline-flex !important;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    /* THE FIX: Remove display: flex */
+    display: inline-block !important; 
+    text-align: center !important;
     
     /* Gradient Effect */
     background: linear-gradient(135deg, #002347 0%, #2563eb 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     
-    /* Remove the 'flex' from parents if needed */
-    width: auto;
+    margin-top: 2rem !important;
+    margin-bottom: 3rem !important;
 }
 
-/* Ensure the icon doesn't get the gradient color */
 .publication-title img {
+    /* Reset gradient for image */
     -webkit-text-fill-color: initial;
-    flex-shrink: 0;
-    animation: fadeInDown 0.8s ease-out;
+    
+    /* Position the icon relative to the first line */
+    height: 1.1em; /* Matches font height */
+    width: auto;
+    vertical-align: middle;
+    margin-right: 15px;
+    margin-top: -5px; /* Adjust this to nudge it up/down */
+    
+    display: inline-block; /* Crucial for vertical-align to work */
 }
 
 @media screen and (max-width: 768px) {
@@ -1114,4 +1118,71 @@ audio {
         flex-direction: column !important; /* Stack on mobile for better fit */
         gap: 10px;
     }
+}
+
+/* Reduce the gap between the major blocks */
+.section {
+    padding: 1.5rem 1.5rem !important; /* Default is 3rem */
+}
+
+/* Tighten the space around the title and authors */
+.publication-header .hero-body {
+    padding-top: 2rem !important;
+    padding-bottom: 1rem !important;
+}
+
+/* Specific fix for the Title's bottom margin */
+.publication-title {
+    margin-bottom: 1rem !important; /* Reduced from 3rem */
+}
+
+/* Tighten the gap between Authors and the Venue/Links */
+.publication-authors {
+    margin-bottom: 0.5rem !important;
+}
+
+/* Reduce the gap before the Abstract section */
+.hero.is-light {
+    margin-top: -1rem; /* Pulls the grey abstract block up */
+}
+
+/* Apply Montserrat to Section Headings */
+h2.title.is-3, 
+.section .title.is-3 {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.5px;
+    text-transform: none;
+    color: var(--primary-navy) !important;
+    margin-bottom: 1.2rem !important; /* Matches your tighter margin request */
+}
+
+/* Ensure the underline is centered and styled correctly for Montserrat */
+.title.is-3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background: var(--gradient-accent);
+    border-radius: 2px;
+}
+
+/* Update the Sample X label in the header */
+.card-header span.is-size-4,
+.card-header span.is-size-5 {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.5px;
+    /* Optional: slightly smaller to keep the header slim */
+    font-size: 1.25rem !important; 
+}
+
+/* Ensure the Ground Truth label matches the same aesthetic */
+.gt-section span {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.5px; /* Slight tracking for the uppercase look */
 }
