@@ -1018,3 +1018,23 @@ audio {
   line-height: 1.6;
   color: var(--secondary-color); /* Optional: makes it slightly softer */
 }
+
+.publication-title {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 30px;
+    margin-top: 2rem;
+}
+
+/* Responsive fix: Stack them vertically on small mobile screens */
+@media screen and (max-width: 768px) {
+    .publication-title {
+        flex-direction: column !important;
+        text-align: center !important;
+    }
+    .publication-title span {
+        text-align: center !important;
+    }
+}
