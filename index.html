@@ -423,10 +423,13 @@
 
       const html = `
       <div class="sample-card">
-        <div class="card-header">
-          <span class="is-size-4" style="font-weight: 700;">Sample ${index + 1}</span>
+        <div class="card-header" style="display: flex; align-items: center;">
+          <div style="flex-shrink: 0;">
+            <span class="is-size-5" style="font-weight: 700; white-space: nowrap;">Sample ${index + 1}</span>
+          </div>
+          
           <div class="gt-section">
-            <span style="font-size: 0.85rem; font-weight: 600; color: #cbd5e0; text-transform: uppercase;">Ground Truth</span>
+            <span style="font-size: 0.75rem; font-weight: 700; color: #cbd5e0; text-transform: uppercase; white-space: nowrap;">Ground Truth</span>
             <audio controls><source src="${basePaths.gt}${id}.wav" type="audio/wav"></audio>
           </div>
         </div>
@@ -434,7 +437,7 @@
         <div class="columns is-gapless" style="padding: 2rem 2.5rem 1rem 2.5rem;">
           <div class="column is-3 pr-5">
             <div class="input-video-container">
-              <video controls muted loop><source src="${basePaths.video}${id}.mp4" type="video/mp4"></video>
+              <video controls preload="metadata"><source src="${basePaths.video}${id}.mp4" type="video/mp4"></video>
             </div>
             <p class="has-text-centered mt-3" style="font-weight: 700; color: #999; font-size: 0.75rem; text-transform: uppercase;">Input Video</p>
           </div>
