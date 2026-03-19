@@ -405,52 +405,80 @@
       container.innerHTML = '';
 
       sampleIds.forEach((id, index) => {
+        // Inside your forEach loop (after extracting data from JSON)
+        const metrics = data[id] || { sisnri: 0, pesq: 0, nisqa: 0, dnsmos: 0 };
+
         const html = `
-        <div class="sample-box" style="margin-bottom: 2.5rem; border: 2px solid #001f3f; border-radius: 40px; overflow: hidden; font-family: sans-serif; background-color: #d3d3d3;">
-          
-          <div style="padding: 1.5rem 2rem; border-bottom: 2px solid #001f3f; display: flex; align-items: center;">
-            <div style="flex: 1;"><h3 class="is-size-4" style="font-weight: 500;">Sample ${index + 1}</h3></div>
-            <div style="flex: 1; display: flex; align-items: center;">
-              <span style="margin-right: 1.5rem; font-size: 1.2rem;">GT audio</span>
-              <audio controls style="height: 35px;"><source src="${basePaths.gt}${id}.wav" type="audio/wav"></audio>
-            </div>
-            <div style="flex: 1;"></div> </div>
-
-          <div class="columns is-gapless" style="margin: 0; padding: 1.5rem 2rem;">
-            <div class="column is-3 has-text-centered">
-              <div style="background-color: #1a5276; border-radius: 4px; padding: 10px; display: inline-block;">
-                <video controls muted loop style="max-height: 180px; width: 100%; display: block;">
-                  <source src="${basePaths.video}${id}.mp4" type="video/mp4">
-                </video>
+          <div class="sample-card">
+            <div class="card-header">
+              <span class="is-size-4" style="font-weight: 700;">Sample ${index + 1}</span>
+              <div class="gt-section">
+                <span style="font-size: 0.85rem; font-weight: 600; color: #cbd5e0; text-transform: uppercase;">Ground Truth</span>
+                <audio controls><source src="${basePaths.gt}${id}.wav" type="audio/wav"></audio>
               </div>
-              <p style="margin-top: 0.5rem; font-size: 1.2rem;">Input video</p>
             </div>
 
-            <div class="column is-9" style="padding-left: 2rem;">
-              <div class="columns is-multiline">
-                
-                <div class="column is-6" style="display: flex; align-items: center; margin-bottom: 1rem;">
-                  <span style="width: 120px; font-size: 1.1rem;">Ours (LSM)</span>
-                  <audio controls style="flex: 1; height: 35px;"><source src="${basePaths.lsm}${id}.wav" type="audio/wav"></audio>
+            <div class="columns is-gapless" style="padding: 2rem 2.5rem 1rem 2.5rem;">
+              <div class="column is-3 pr-5">
+                <div class="input-video-container">
+                  <video controls muted loop><source src="${basePaths.video}${id}.mp4" type="video/mp4"></video>
                 </div>
-                <div class="column is-6" style="display: flex; align-items: center; margin-bottom: 1rem;">
-                  <span style="width: 160px; font-size: 1.1rem; line-height: 1.1;">Baseline<br><small>(AV-MossFormer2)</small></span>
-                  <audio controls style="flex: 1; height: 35px;"><source src="${basePaths.ao}${id}.wav" type="audio/wav"></audio>
-                </div>
+                <p class="has-text-centered mt-3" style="font-weight: 700; color: #999; font-size: 0.75rem; text-transform: uppercase;">Input Video</p>
+              </div>
 
-                <div class="column is-6" style="display: flex; align-items: center;">
-                  <span style="width: 120px; font-size: 1.1rem;">Full-tune</span>
-                  <audio controls style="flex: 1; height: 35px;"><source src="${basePaths.full}${id}.wav" type="audio/wav"></audio>
+              <div class="column is-9 pl-5">
+                <div class="columns is-multiline">
+                  <div class="column is-6">
+                    <div class="p-3 ours-highlight" style="border-radius: 12px;">
+                      <span class="ours-tag">Proposed</span>
+                      <p class="method-label" style="color: #8c6d1f;">LSM (Ours)</p>
+                      <audio controls><source src="${basePaths.lsm}${id}.wav" type="audio/wav"></audio>
+                    </div>
+                  </div>
+                  <div class="column is-6">
+                    <div class="p-3" style="border-radius: 12px; border: 1px solid #f0f0f0; background: #fafafa;">
+                      <p class="method-label">AV-MossFormer2</p>
+                      <audio controls><source src="${basePaths.clearer}${id}.wav" type="audio/wav"></audio>
+                    </div>
+                  </div>
+                  <div class="column is-6">
+                    <div class="p-3"><p class="method-label" style="color: #888;">Full-tune</p><audio controls><source src="${basePaths.full}${id}.wav" type="audio/wav"></audio></div>
+                  </div>
+                  <div class="column is-6">
+                    <div class="p-3"><p class="method-label" style="color: #888;">Residual</p><audio controls><source src="${basePaths.res}${id}.wav" type="audio/wav"></audio></div>
+                  </div>
                 </div>
-                <div class="column is-6" style="display: flex; align-items: center;">
-                  <span style="width: 160px; font-size: 1.1rem;">Residual</span>
-                  <audio controls style="flex: 1; height: 35px;"><source src="${basePaths.res}${id}.wav" type="audio/wav"></audio>
-                </div>
+              </div>
+            </div>
 
+            <div style="padding: 0 2.5rem 1.5rem 2.5rem;">
+              <button class="button is-small is-rounded is-light" onclick="this.nextElementSibling.classList.toggle('is-hidden')" style="font-size: 0.75rem; font-weight: 600;">
+                <span class="icon is-small"><i class="fas fa-chart-bar"></i></span>
+                <span>SHOW METRICS</span>
+              </button>
+              
+              <div class="metrics-tray is-hidden mt-3" style="background: #fdfdfd; border: 1px dashed #ddd; border-radius: 10px; padding: 15px;">
+                <div class="columns is-mobile has-text-centered">
+                  <div class="column">
+                    <p style="font-size: 0.65rem; color: #999; text-transform: uppercase;">SI-SNRi</p>
+                    <p style="font-weight: 700; color: #2d3748;">${metrics.sisnri.toFixed(2)}</p>
+                  </div>
+                  <div class="column">
+                    <p style="font-size: 0.65rem; color: #999; text-transform: uppercase;">PESQ</p>
+                    <p style="font-weight: 700; color: #2d3748;">${metrics.pesq.toFixed(2)}</p>
+                  </div>
+                  <div class="column">
+                    <p style="font-size: 0.65rem; color: #999; text-transform: uppercase;">NISQA</p>
+                    <p style="font-weight: 700; color: #2d3748;">${metrics.nisqa.toFixed(2)}</p>
+                  </div>
+                  <div class="column">
+                    <p style="font-size: 0.65rem; color: #999; text-transform: uppercase;">DNSMOS</p>
+                    <p style="font-weight: 700; color: #2d3748;">${metrics.dnsmos.toFixed(2)}</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
         `;
         container.insertAdjacentHTML('beforeend', html);
       });
