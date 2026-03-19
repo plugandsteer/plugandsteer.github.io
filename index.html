@@ -432,7 +432,7 @@
           <div class="columns is-vcentered" style="padding: 2rem 2.5rem 1rem 2.5rem; margin: 0;">
             <div class="column is-4" style="padding-right: 3rem;">
               <div class="input-video-container">
-                <video controls loop preload="metadata">
+                <video controls preload="metadata">
                   <source src="${basePaths.video}${id}.mp4" type="video/mp4">
                 </video>
               </div>
@@ -494,13 +494,13 @@
                     <td class="has-text-centered">${clearer.nisqas}</td>
                   </tr>
                   <tr style="color: #888;">
-                    <td>Full-tune</td>
+                    <td>Residual (Fine-tune AO backbone)</td>
                     <td class="has-text-centered">${fulltune.sisnri}</td>
                     <td class="has-text-centered">${fulltune.dnsmos}</td>
                     <td class="has-text-centered">${fulltune.nisqas}</td>
                   </tr>
                   <tr style="color: #888;">
-                    <td>Residual</td>
+                    <td>Residual (Freeze AO backbone)</td>
                     <td class="has-text-centered">${res.sisnri}</td>
                     <td class="has-text-centered">${res.dnsmos}</td>
                     <td class="has-text-centered">${res.nisqas}</td>
