@@ -335,7 +335,7 @@
 
 
 <!--BibTex citation -->
-  <section class="section" id="BibTeX">
+  <!-- <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <div class="bibtex-header">
         <h2 class="title">BibTeX</h2>
@@ -352,7 +352,7 @@
   url={https://your-domain.com/your-project-page}
 }</code></pre>
     </div>
-</section>
+</section> -->
 <!--End BibTex citation -->
 
 
@@ -383,10 +383,12 @@
   async function loadSamples() {
     try {
       const response = await fetch('./better_files_metrics.json');
-      const data = await response.json(); // This is now an Object
+      const data = await response.json();
+      console.log("My JSON Data:", data); // Check if this looks like an object
       
       // Extract the keys (filenames) from the object
       const sampleIds = Object.keys(data);
+      console.log("Extracted IDs:", sampleIds); // Check if this is an array of strings
       
       const container = document.getElementById('audio-samples-container');
 
