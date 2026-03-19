@@ -424,7 +424,12 @@
 
     <!-- End of Statcounter Code -->
 <script>
-  const sampleIds = ["6392568335285725796_00016_0_6329151425173313518_00029_6.311865876668673"]// Add your filenames here (without extensions) , "sample2"]; 
+  const response = await fetch('./tab2_samples.json');
+  const sampleIds = await response.json();
+  
+
+  // const sampleIds = ["6392568335285725796_00016_0_6329151425173313518_00029_6.311865876668673"]
+  // Add your filenames here (without extensions) , "sample2"]; 
   const container = document.getElementById('audio-samples-container');
 
   const basePaths = {
