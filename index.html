@@ -317,21 +317,21 @@
 
 
 <!-- Teaser video-->
-<section class="hero teaser">
+<!-- <section class="hero teaser">
   <div class="container is-max-desktop">
-    <div class="hero-body">
+    <div class="hero-body"> -->
       <!-- TODO: Replace with your teaser video -->
-      <video poster="" id="tree" autoplay controls muted loop height="100%" preload="metadata">
+      <!-- <video poster="" id="tree" autoplay controls muted loop height="100%" preload="metadata"> -->
         <!-- TODO: Add your video file path here -->
-        <source src="static/videos/banner_video.mp4" type="video/mp4">
-      </video>
+        <!-- <source src="static/videos/banner_video.mp4" type="video/mp4"> -->
+      <!-- </video> -->
       <!-- TODO: Replace with your video description -->
-      <h2 class="subtitle has-text-centered">
+      <!-- <h2 class="subtitle has-text-centered">
         Aliquam vitae elit ullamcorper tellus egestas pellentesque. Ut lacus tellus, maximus vel lectus at, placerat pretium mi. Maecenas dignissim tincidunt vestibulum. Sed consequat hendrerit nisl ut maximus. 
       </h2>
     </div>
   </div>
-</section>
+</section> -->
 <!-- End teaser video -->
 
 <!-- Paper abstract -->
@@ -424,61 +424,70 @@
 
     <!-- End of Statcounter Code -->
 <script>
-  const response = await fetch('./tab2_samples.json');
-  const sampleIds = await response.json();
-  
+  async function loadSamples() {
+    try {
+      const response = await fetch('./tab2_samples.json');
+      const sampleIds = await response.json();
+      
+      const container = document.getElementById('audio-samples-container');
 
-  // const sampleIds = ["6392568335285725796_00016_0_6329151425173313518_00029_6.311865876668673"]
-  // Add your filenames here (without extensions) , "sample2"]; 
-  const container = document.getElementById('audio-samples-container');
+      const basePaths = {
+        mix: "./static/audios/tab2/audio_mix/",
+        video: "./static/audios/tab2/video/",
+        gt: "./static/audios/tab2/audio_gt/",
+        ao: "./static/audios/tab2/ao_moss/",
+        clearer: "./static/audios/tab2/av_moss_clearer/",
+        lsm: "./static/audios/tab2/av_moss_LSM/",
+        full: "./static/audios/tab2/av_moss_fulltune/",
+        res: "./static/audios/tab2/av_moss_res/"
+      };
 
-  const basePaths = {
-    mix: "./static/audios/tab2/audio_mix/",
-    video: "./static/audios/tab2/video/",
-    gt: "./static/audios/tab2/audio_gt/",
-    ao: "./static/audios/tab2/ao_moss/",
-    clearer: "./static/audios/tab2/av_moss_clearer/",
-    lsm: "./static/audios/tab2/av_moss_LSM/",
-    full: "./static/audios/tab2/av_moss_fulltune/",
-    res: "./static/audios/tab2/av_moss_res/"
-  };
+      // Clear the container first in case of re-runs
+      container.innerHTML = '';
 
-  sampleIds.forEach((id, index) => {
-    const html = `
-      <div class="sample-box" style="margin-bottom: 3rem; padding: 1.5rem; border-bottom: 1px solid #eee;">
-        <h3 class="subtitle is-4">Sample ${index + 1}</h3>
-        
-        <div class="columns is-vcentered">
-          <div class="column">
-            <p class="label-txt"><strong>Input Audio</strong></p>
-            <audio controls class="w-100"><source src="${basePaths.mix}${id}.wav" type="audio/wav"></audio>
-          </div>
-          <div class="column has-text-centered">
-            <p class="label-txt"><strong>Input Video</strong></p>
-            <video controls muted loop style="max-height: 120px; border-radius: 4px;">
-              <source src="${basePaths.video}${id}.mp4" type="video/mp4">
-            </video>
-          </div>
-          <div class="column">
-            <p class="label-txt"><strong>GT Audio</strong></p>
-            <audio controls class="w-100"><source src="${basePaths.gt}${id}.wav" type="audio/wav"></audio>
-          </div>
-        </div>
+      sampleIds.forEach((id, index) => {
+        const html = `
+          <div class="sample-box" style="margin-bottom: 3rem; padding: 1.5rem; border-bottom: 1px solid #eee;">
+            <h3 class="subtitle is-4">Sample ${index + 1}</h3>
+            
+            <div class="columns is-vcentered">
+              <div class="column">
+                <p class="label-txt"><strong>Input Audio</strong></p>
+                <audio controls style="width:100%; height:30px;"><source src="${basePaths.mix}${id}.wav" type="audio/wav"></audio>
+              </div>
+              <div class="column has-text-centered">
+                <p class="label-txt"><strong>Input Video</strong></p>
+                <video controls muted loop style="max-height: 120px; border-radius: 4px;">
+                  <source src="${basePaths.video}${id}.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="column">
+                <p class="label-txt"><strong>GT Audio</strong></p>
+                <audio controls style="width:100%; height:30px;"><source src="${basePaths.gt}${id}.wav" type="audio/wav"></audio>
+              </div>
+            </div>
 
-        <div class="columns is-multiline" style="margin-top: 10px;">
-          <div class="column"><p class="is-size-7">pred-AO</p><audio controls><source src="${basePaths.ao}${id}.wav"></audio></div>
-          <div class="column"><p class="is-size-7">pred-AV-Clearer</p><audio controls><source src="${basePaths.clearer}${id}.wav"></audio></div>
-          <div class="column has-background-info-light" style="border: 1px solid #3273dc; border-radius: 5px;">
-            <p class="is-size-7"><strong>pred-AV-LSM (Ours)</strong></p>
-            <audio controls><source src="${basePaths.lsm}${id}.wav"></audio>
+            <div class="columns is-multiline" style="margin-top: 10px;">
+              <div class="column"><p class="is-size-7">pred-AO</p><audio controls style="width:100%; height:30px;"><source src="${basePaths.ao}${id}.wav"></audio></div>
+              <div class="column"><p class="is-size-7">pred-AV-Clearer</p><audio controls style="width:100%; height:30px;"><source src="${basePaths.clearer}${id}.wav"></audio></div>
+              <div class="column has-background-info-light" style="border: 1px solid #3273dc; border-radius: 5px;">
+                <p class="is-size-7"><strong>pred-AV-LSM (Ours)</strong></p>
+                <audio controls style="width:100%; height:30px;"><source src="${basePaths.lsm}${id}.wav"></audio>
+              </div>
+              <div class="column"><p class="is-size-7">pred-AV-fulltune</p><audio controls style="width:100%; height:30px;"><source src="${basePaths.full}${id}.wav"></audio></div>
+              <div class="column"><p class="is-size-7">pred-AV-res</p><audio controls style="width:100%; height:30px;"><source src="${basePaths.res}${id}.wav"></audio></div>
+            </div>
           </div>
-          <div class="column"><p class="is-size-7">pred-AV-fulltune</p><audio controls><source src="${basePaths.full}${id}.wav"></audio></div>
-          <div class="column"><p class="is-size-7">pred-AV-res</p><audio controls><source src="${basePaths.res}${id}.wav"></audio></div>
-        </div>
-      </div>
-    `;
-    container.innerHTML += html;
-  });
+        `;
+        container.insertAdjacentHTML('beforeend', html);
+      });
+    } catch (error) {
+      console.error("Error loading samples:", error);
+    }
+  }
+
+  // Execute the function
+  loadSamples();
 </script>
   </body>
   </html>
