@@ -802,3 +802,19 @@ audio { height: 30px; width: 100%; }
 .label-txt { margin-bottom: 5px !important; display: block; }
 /* Highlight for your method */
 .has-background-info-light { padding: 5px; }
+
+/* Styling for a cleaner look within the custom box */
+.sample-box audio {
+    filter: sepia(20%) saturate(70%) grayscale(1) contrast(90%); /* Muted look to match UI */
+    width: 100%;
+}
+
+.sample-box video {
+    background-color: #000;
+}
+
+/* Ensure Bulma columns don't add extra padding */
+.sample-box .column {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
