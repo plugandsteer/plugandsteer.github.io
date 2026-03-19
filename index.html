@@ -383,7 +383,10 @@
   async function loadSamples() {
     try {
       const response = await fetch('./better_files_metrics.json');
-      const sampleIds = await response.json();
+      const data = await response.json(); // This is now an Object
+      
+      // Extract the keys (filenames) from the object
+      const sampleIds = Object.keys(data);
       
       const container = document.getElementById('audio-samples-container');
 
