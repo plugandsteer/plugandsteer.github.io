@@ -992,3 +992,10 @@ audio {
     border-radius: 8px;
     overflow: hidden;
 }
+
+/* Targeted styling for the abstract text */
+.abstract-content {
+  font-size: 0.95rem !important; /* Adjust this value as needed */
+  line-height: 1.6;
+  color: var(--secondary-color); /* Optional: makes it slightly softer */
+}
