@@ -57,9 +57,9 @@
   <!-- <meta name="citation_author" content="Kwak, Doyeop*">
   <meta name="citation_author" content="Suyeon, Lee*">
   <meta name="citation_author" content="Joon Son, Chung"> -->
-  <meta name="citation_publication_date" content="2026">
-  <meta name="citation_conference_title" content="Submitted to Interspeech 2026">
-  <meta name="citation_pdf_url" content="https://YOUR_DOMAIN.com/static/pdfs/paper.pdf">
+  <!-- <meta name="citation_publication_date" content="2026">
+  <meta name="citation_conference_title" content="Submitted to Interspeech 2026"> -->
+  <!-- <meta name="citation_pdf_url" content="https://YOUR_DOMAIN.com/static/pdfs/paper.pdf"> -->
   
   <!-- Additional SEO -->
   <meta name="theme-color" content="#2563eb">
@@ -76,7 +76,7 @@
 
 
   <!-- TODO: Replace with your paper title and authors -->
-  <title>Plug-and-Steer: Decoupling Separation and Selection in Audio-Visual Target Speaker Extraction - AUTHOR_NAMES | Academic Research</title>
+  <title>Plug-and-Steer: Decoupling Separation and Selection in Audio-Visual Target Speaker Extraction</title>
   
   <!-- Favicon and App Icons -->
   <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
@@ -196,7 +196,7 @@
         <div class="columns is-centered">
           <div class="column has-text-centered">
             <!-- TODO: Replace with your paper title -->
-            <h1 class="title is-1 publication-title">Plug-and-Steer: Decoupling Separation and Selection in Audio-Visual Target Speaker Extraction</h1>
+            <h1 class="title is-2 publication-title">Plug-and-Steer: Decoupling Separation and Selection in Audio-Visual Target Speaker Extraction</h1>
             <div class="is-size-5 publication-authors">
               <!-- TODO: Replace with your paper authors and their personal links -->
                 <span class="author-block">
@@ -406,37 +406,51 @@
 
       sampleIds.forEach((id, index) => {
         const html = `
-          <div class="sample-box" style="margin-bottom: 3rem; padding: 1.5rem; border-bottom: 1px solid #eee;">
-            <h3 class="subtitle is-4">Sample ${index + 1}</h3>
-            
-            <div class="columns is-vcentered">
-              <div class="column">
-                <p class="label-txt"><strong>Input Audio</strong></p>
-                <audio controls style="width:100%; height:30px;"><source src="${basePaths.mix}${id}.wav" type="audio/wav"></audio>
-              </div>
-              <div class="column has-text-centered">
-                <p class="label-txt"><strong>Input Video</strong></p>
-                <video controls muted loop style="max-height: 120px; border-radius: 4px;">
+        <div class="sample-box" style="margin-bottom: 2.5rem; border: 2px solid #001f3f; border-radius: 40px; overflow: hidden; font-family: sans-serif; background-color: #d3d3d3;">
+          
+          <div style="padding: 1.5rem 2rem; border-bottom: 2px solid #001f3f; display: flex; align-items: center;">
+            <div style="flex: 1;"><h3 class="is-size-4" style="font-weight: 500;">Sample ${index + 1}</h3></div>
+            <div style="flex: 1; display: flex; align-items: center;">
+              <span style="margin-right: 1.5rem; font-size: 1.2rem;">GT audio</span>
+              <audio controls style="height: 35px;"><source src="${basePaths.gt}${id}.wav" type="audio/wav"></audio>
+            </div>
+            <div style="flex: 1;"></div> </div>
+
+          <div class="columns is-gapless" style="margin: 0; padding: 1.5rem 2rem;">
+            <div class="column is-3 has-text-centered">
+              <div style="background-color: #1a5276; border-radius: 4px; padding: 10px; display: inline-block;">
+                <video controls muted loop style="max-height: 180px; width: 100%; display: block;">
                   <source src="${basePaths.video}${id}.mp4" type="video/mp4">
                 </video>
               </div>
-              <div class="column">
-                <p class="label-txt"><strong>GT Audio</strong></p>
-                <audio controls style="width:100%; height:30px;"><source src="${basePaths.gt}${id}.wav" type="audio/wav"></audio>
-              </div>
+              <p style="margin-top: 0.5rem; font-size: 1.2rem;">Input video</p>
             </div>
 
-            <div class="columns is-multiline" style="margin-top: 10px;">
-              <div class="column"><p class="is-size-7">pred-AO</p><audio controls style="width:100%; height:30px;"><source src="${basePaths.ao}${id}.wav"></audio></div>
-              <div class="column"><p class="is-size-7">pred-AV-Clearer</p><audio controls style="width:100%; height:30px;"><source src="${basePaths.clearer}${id}.wav"></audio></div>
-              <div class="column has-background-info-light" style="border: 1px solid #3273dc; border-radius: 5px;">
-                <p class="is-size-7"><strong>pred-AV-LSM (Ours)</strong></p>
-                <audio controls style="width:100%; height:30px;"><source src="${basePaths.lsm}${id}.wav"></audio>
+            <div class="column is-9" style="padding-left: 2rem;">
+              <div class="columns is-multiline">
+                
+                <div class="column is-6" style="display: flex; align-items: center; margin-bottom: 1rem;">
+                  <span style="width: 120px; font-size: 1.1rem;">Ours (LSM)</span>
+                  <audio controls style="flex: 1; height: 35px;"><source src="${basePaths.lsm}${id}.wav" type="audio/wav"></audio>
+                </div>
+                <div class="column is-6" style="display: flex; align-items: center; margin-bottom: 1rem;">
+                  <span style="width: 160px; font-size: 1.1rem; line-height: 1.1;">Baseline<br><small>(AV-MossFormer2)</small></span>
+                  <audio controls style="flex: 1; height: 35px;"><source src="${basePaths.ao}${id}.wav" type="audio/wav"></audio>
+                </div>
+
+                <div class="column is-6" style="display: flex; align-items: center;">
+                  <span style="width: 120px; font-size: 1.1rem;">Full-tune</span>
+                  <audio controls style="flex: 1; height: 35px;"><source src="${basePaths.full}${id}.wav" type="audio/wav"></audio>
+                </div>
+                <div class="column is-6" style="display: flex; align-items: center;">
+                  <span style="width: 160px; font-size: 1.1rem;">Residual</span>
+                  <audio controls style="flex: 1; height: 35px;"><source src="${basePaths.res}${id}.wav" type="audio/wav"></audio>
+                </div>
+
               </div>
-              <div class="column"><p class="is-size-7">pred-AV-fulltune</p><audio controls style="width:100%; height:30px;"><source src="${basePaths.full}${id}.wav"></audio></div>
-              <div class="column"><p class="is-size-7">pred-AV-res</p><audio controls style="width:100%; height:30px;"><source src="${basePaths.res}${id}.wav"></audio></div>
             </div>
           </div>
+        </div>
         `;
         container.insertAdjacentHTML('beforeend', html);
       });
