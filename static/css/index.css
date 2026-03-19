@@ -118,8 +118,27 @@ body {
     font-family: 'Inter', sans-serif !important;
     font-weight: 800 !important;
     color: var(--text-primary) !important;
-    margin-bottom: 2rem !important;
-    line-height: 1.1 !important;
+    margin-bottom: 3rem !important; /* Increased margin for the subtitle/authors below */
+    line-height: 1.2 !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.publication-title img {
+    /* Optional: adds a subtle entry animation */
+    animation: fadeInDown 0.8s ease-out;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .publication-banner {
