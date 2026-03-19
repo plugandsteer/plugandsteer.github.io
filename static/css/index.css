@@ -114,21 +114,20 @@ body {
 
 
 /* Publication Content Styling */
-.publication-title {
+/* .publication-title {
     font-family: 'Inter', sans-serif !important;
     font-weight: 800 !important;
     color: var(--text-primary) !important;
-    margin-bottom: 3rem !important; /* Increased margin for the subtitle/authors below */
+    margin-bottom: 3rem !important;
     line-height: 1.2 !important;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
+} */
+/* 
 .publication-title img {
-    /* Optional: adds a subtle entry animation */
     animation: fadeInDown 0.8s ease-out;
-}
+} */
 
 @keyframes fadeInDown {
     from {
@@ -1018,7 +1017,7 @@ audio {
   line-height: 1.6;
   color: var(--secondary-color); /* Optional: makes it slightly softer */
 }
-
+/* 
 .publication-title {
     display: flex !important;
     flex-direction: row !important;
@@ -1026,10 +1025,10 @@ audio {
     justify-content: center !important;
     gap: 30px;
     margin-top: 2rem;
-}
+} */
 
 /* Responsive fix: Stack them vertically on small mobile screens */
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
     .publication-title {
         flex-direction: column !important;
         text-align: center !important;
@@ -1037,18 +1036,18 @@ audio {
     .publication-title span {
         text-align: center !important;
     }
-}
+} */
 
 /* Target only the main paper title and section headings */
-.publication-title, 
+/* .publication-title, 
 .title.is-1, 
 .title.is-2, 
 .title.is-3 {
   font-family: 'Montserrat', sans-serif !important;
   font-weight: 800 !important;
-  letter-spacing: -1px; /* Professional "tight" look for AI papers */
-  text-transform: none; /* Keeps your casing as-is */
-}
+  letter-spacing: -1px;
+  text-transform: none;
+} */
 
 /* Optional: Make the "Audio Samples" title slightly different */
 #audio-samples-container-title {
@@ -1056,7 +1055,7 @@ audio {
   font-weight: 700;
 }
 
-.publication-title {
+/* .publication-title {
   background: linear-gradient(135deg, #002347 0%, #2563eb 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1064,17 +1063,55 @@ audio {
 }
 
 .publication-title {
-    display: inline-block !important; /* Shrinks the container to fit the text exactly */
-    text-align: center !important;    /* Centers the lines of text within that container */
+    display: inline-block !important; 
+    text-align: center !important;
     margin-left: auto;
     margin-right: auto;
     line-height: 1.2 !important;
 }
 
-/* Responsive fix: If the title wraps, keep the icon inline */
 @media screen and (max-width: 768px) {
     .publication-title img {
-        height: 1.2em; /* Slightly larger on mobile for visibility */
+        height: 1.2em;
         margin-bottom: 10px;
+    }
+} */
+
+
+/* Final Consolidated Publication Title Styling */
+.publication-title {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 800 !important;
+    letter-spacing: -1px;
+    line-height: 1.2 !important;
+    margin-top: 2rem !important;
+    margin-bottom: 3rem !important;
+    
+    /* Centering Logic */
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
+    /* Gradient Effect */
+    background: linear-gradient(135deg, #002347 0%, #2563eb 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    /* Remove the 'flex' from parents if needed */
+    width: auto;
+}
+
+/* Ensure the icon doesn't get the gradient color */
+.publication-title img {
+    -webkit-text-fill-color: initial;
+    flex-shrink: 0;
+    animation: fadeInDown 0.8s ease-out;
+}
+
+@media screen and (max-width: 768px) {
+    .publication-title {
+        flex-direction: column !important; /* Stack on mobile for better fit */
+        gap: 10px;
     }
 }
