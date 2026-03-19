@@ -1038,3 +1038,27 @@ audio {
         text-align: center !important;
     }
 }
+
+/* Target only the main paper title and section headings */
+.publication-title, 
+.title.is-1, 
+.title.is-2, 
+.title.is-3 {
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 800 !important;
+  letter-spacing: -1px; /* Professional "tight" look for AI papers */
+  text-transform: none; /* Keeps your casing as-is */
+}
+
+/* Optional: Make the "Audio Samples" title slightly different */
+#audio-samples-container-title {
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 700;
+}
+
+.publication-title {
+  background: linear-gradient(135deg, #002347 0%, #2563eb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
