@@ -1,2 +1,4 @@
 readme
 *.py
+*.json
+!better_files_metrics.json
