@@ -224,6 +224,16 @@ body {
   color: var(--text-light);
 }
 
+.publication-authors-names .author-block,
+.publication-authors-names a {
+  color: #000 !important;
+}
+
+.publication-authors-meta .author-block,
+.publication-authors-meta .eql-cntrb {
+  color: var(--text-secondary);
+}
+
 .publication-banner img {
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-lg);
